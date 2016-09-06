@@ -100,6 +100,13 @@ static CGFloat kBorderWidth = 3.0;
 }
 
 + (void)showWithView:(UIView *)view style:(JTProgressHUDStyle)style transition:(JTProgressHUDTransition)transition backgroundAlpha:(CGFloat)backgroundAlpha {
+    
+    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn onView:nil style:JTProgressHUDStyleGradient transition:JTProgressHUDTransitionDefault backgroundAlpha:backgroundAlpha];
+}
+
+
++ (void)showWithView:(UIView *)view onView:(UIView*)rootView style:(JTProgressHUDStyle)style transition:(JTProgressHUDTransition)transition backgroundAlpha:(CGFloat)backgroundAlpha {
+
     if ([[JTProgressHUD sharedInstance] isVisible]) {
         return;
     }
@@ -144,7 +151,11 @@ static CGFloat kBorderWidth = 3.0;
     // View
     if (view) {
         sharedInstance.customView.center = sharedInstance.backgroundView.center;
-        [[UIApplication sharedApplication].keyWindow addSubview:sharedInstance.customView];
+        if (rootView != nil) {
+            [rootView addSubview:sharedInstance.customView];
+        }else{
+            [[UIApplication sharedApplication].keyWindow addSubview:sharedInstance.customView];
+        }
     } else {
         [sharedInstance createDefaultLoadingView];
     }

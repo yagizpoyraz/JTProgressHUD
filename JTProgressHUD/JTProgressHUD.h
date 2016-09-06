@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, JTProgressHUDView) {
  All parameters can be setup separately.
  */
 + (void)showWithView:(UIView *)view style:(JTProgressHUDStyle)style transition:(JTProgressHUDTransition)transition backgroundAlpha:(CGFloat)backgroundAlpha;
++ (void)showWithView:(UIView *)view onView:(UIView*)rootView style:(JTProgressHUDStyle)style transition:(JTProgressHUDTransition)transition backgroundAlpha:(CGFloat)backgroundAlpha;
 + (void)show;
 + (void)showWithView:(UIView *)view;
 + (void)showWithStyle:(JTProgressHUDStyle)style;
